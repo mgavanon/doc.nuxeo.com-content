@@ -12,6 +12,11 @@ const no_clean = !!process.argv.find((val) => val === '--no-clean');
 
 // Spawns a dev server with Metalsmith & Webpack live reloading via Browsersync
 const debug = require('debug')('docs-server');
+if (!debug.extend) {
+  debug.extend = (ns) => (msg) => {
+    debug(ns, msg);
+  };
+}
 const error = debug.extend('error');
 const info = debug.extend('info');
 
